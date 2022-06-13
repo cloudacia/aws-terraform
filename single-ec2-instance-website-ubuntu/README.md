@@ -10,18 +10,17 @@ Terraform manages the deployment.
 
 Clone the repository locally in your system:
 
-`git clone https://github.com/cloudacia/terraform-lab03`
+`git clone https://github.com/cloudacia/aws-terraform.git`
 
 Deploy the code in your AWS account with Terraform
 
-`cd terraform-lab03`
-
-
 `terraform init`
 
+`terraform validate`
 
 `terraform apply`
 
+`terraform destroy`
 
 **Folder structure options and naming conventions for software projects**
 ```
