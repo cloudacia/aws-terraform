@@ -32,11 +32,11 @@ Terraform manages the deployment.
 
 Clone the repository locally in your system:
 
-`git clone https://github.com/cloudacia/terraform-lab01`
+`git clone https://github.com/cloudacia/aws-terraform.git`
 
 Deploy the code in your AWS account with Terraform
 
-`cd terraform-lab01`
+`cd aws-terraform`
 
 `terraform init`
 
