@@ -36,8 +36,6 @@ Clone the repository locally in your system:
 
 Deploy the code in your AWS account with Terraform
 
-`cd aws-terraform`
-
 `terraform init`
 
 `terraform validate`
