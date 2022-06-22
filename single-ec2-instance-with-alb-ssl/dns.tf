@@ -49,6 +49,18 @@ resource "aws_route53_record" "www" {
   alias {
     name                   = aws_lb.alb01.dns_name
     zone_id                = aws_lb.alb01.zone_id
-    evaluate_target_health = true
+    evaluate_target_health = false
+  }
+}
+
+resource "aws_route53_record" "www2" {
+  zone_id = data.aws_route53_zone.selected.zone_id
+  name    = data.aws_route53_zone.selected.name
+  type    = "A"
+
+  alias {
+    name                   = aws_lb.alb01.dns_name
+    zone_id                = aws_lb.alb01.zone_id
+    evaluate_target_health = false
   }
 }

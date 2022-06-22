@@ -45,6 +45,12 @@ resource "aws_route_table_association" "rta01" {
   route_table_id = aws_route_table.rt01.id
 }
 
+# AWS ROUTE ASSOCIATION
+resource "aws_route_table_association" "rta02" {
+  subnet_id      = aws_subnet.subnet02.id
+  route_table_id = aws_route_table.rt01.id
+}
+
 # AWS INTERNET GATEWAY
 resource "aws_internet_gateway" "ig" {
   vpc_id = aws_vpc.cloudacia_vpc.id
