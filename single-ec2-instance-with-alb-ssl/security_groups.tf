@@ -39,25 +39,37 @@ resource "aws_security_group" "web_and_ssh" {
   }
 }
 
-#####################################
-###  Security Group for VPN endpoint
-####################################
+################################
+###  Security Group for ALB    #
+################################
 
-resource "aws_security_group" "client-vpn-access" {
-  name   = "terraform-shared-client-vpn-access"
-  vpc_id = aws_vpc.cloudacia_vpc.id
+# AWS SECURITY GROUP FOR THE LOAD BALANCER
+resource "aws_security_group" "alb" {
+  name        = "alb"
+  description = "Allow incoming traffic to port 80 and 443 TCP"
+  vpc_id      = aws_vpc.cloudacia_vpc.id
+  tags = {
+    Name = "ALB"
+  }
 
   ingress {
-    from_port   = 0
-    protocol    = "-1"
-    to_port     = 0
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
     from_port   = 0
-    protocol    = "-1"
     to_port     = 0
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
