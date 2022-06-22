@@ -8,24 +8,6 @@ resource "aws_lb" "alb01" {
   enable_deletion_protection = false
 }
 
-# AWS ALB TARGET GROUP
-resource "aws_alb_target_group" "alb_tg_webserver" {
-  port     = 80
-  protocol = "HTTP"
-  vpc_id   = aws_vpc.cloudacia_vpc.id
-
-  health_check {
-    protocol            = "HTTP"
-    path                = "/"
-    port                = "traffic-port"
-    healthy_threshold   = 5
-    unhealthy_threshold = 2
-    timeout             = 5
-    interval            = 30
-    matcher             = "200"
-  }
-}
-
 # AWS ALB LISTENER
 resource "aws_alb_listener" "alb_listener_front_end" {
   load_balancer_arn = aws_lb.alb01.arn

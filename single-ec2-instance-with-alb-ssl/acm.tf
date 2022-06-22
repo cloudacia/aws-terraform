@@ -23,6 +23,6 @@ resource "aws_acm_certificate_validation" "web_server_validation" {
   timeouts {
     create = "5m"
   }
-  certificate_arn         = aws_acm_certificate.vpn_server.arn
+  certificate_arn         = aws_acm_certificate.web_server.arn
   validation_record_fqdns = [for record in aws_route53_record.cert_validation_record : record.fqdn]
 }
