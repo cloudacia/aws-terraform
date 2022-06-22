@@ -30,7 +30,8 @@ resource "aws_alb_target_group" "alb_tg_webserver" {
 resource "aws_alb_listener" "alb_listener_front_end" {
   load_balancer_arn = aws_lb.alb01.arn
   port              = "443"
-  protocol          = "HTTP"
+  protocol          = "HTTPS"
+  certificate_arn   = aws_acm_certificate.web_server.id
 
   default_action {
     type             = "forward"
