@@ -1,4 +1,6 @@
-# AWS S3 BUCKET
+####################################################
+# AWS S3 bucket                                    #
+####################################################
 resource "aws_s3_bucket" "bucket01" {
   bucket = "s3-python-web-app-hello-world"
   acl    = "private"
@@ -7,7 +9,9 @@ resource "aws_s3_bucket" "bucket01" {
   }
 }
 
-# AWS UPLOAD FILE TO S3 BUCKET
+####################################################
+# Upload a file to a S3 bucket                     #
+####################################################
 resource "aws_s3_bucket_object" "object" {
   bucket = aws_s3_bucket.bucket01.id
   key    = "http-server.py"

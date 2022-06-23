@@ -1,5 +1,7 @@
 
-# AWS SECURITY GROUP FOR EC2 INSTANCES
+############################################################
+# Security Group for a EC2 instance asting as a web server #
+############################################################
 resource "aws_security_group" "webserver" {
   name        = "webserver"
   description = "Allow incoming traffic to port 80/TCP"
@@ -23,7 +25,9 @@ resource "aws_security_group" "webserver" {
   }
 }
 
-# AWS SECURITY GROUP FOR THE LOAD BALANCER
+############################################################
+# Security Group for the Load Balancer                     #
+############################################################
 resource "aws_security_group" "alb" {
   name        = "alb"
   description = "Allow incoming traffic to port 80/TCP"

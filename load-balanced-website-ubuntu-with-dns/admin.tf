@@ -1,5 +1,7 @@
 
-# AWS SECURTIY GROUP FOR THE BASTION HOST
+####################################################
+# Bastion host Security Group                      #
+####################################################
 resource "aws_security_group" "administration" {
   name        = "administration"
   description = "Allow default administration service"
@@ -30,7 +32,9 @@ resource "aws_security_group" "administration" {
   }
 }
 
-# AWS INSTANCE TO BE USED AS BASTION HOST
+####################################################
+# EC2 instance acting as a bastion host            #
+####################################################
 resource "aws_instance" "bastion" {
   ami           = var.aws_amis
   instance_type = "t2.micro"

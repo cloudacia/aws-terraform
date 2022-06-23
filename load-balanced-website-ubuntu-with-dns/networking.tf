@@ -1,5 +1,7 @@
 
-# AWS VPC
+####################################################
+# AWS VPC                                          #
+####################################################
 resource "aws_vpc" "vpc_dev" {
   cidr_block           = var.vpc_cidr
   enable_dns_hostnames = true
@@ -9,7 +11,9 @@ resource "aws_vpc" "vpc_dev" {
   }
 }
 
-# AWS SUBNET #1
+####################################################
+# VPC Subnet 01                                    #
+####################################################
 resource "aws_subnet" "subnet01" {
   vpc_id            = aws_vpc.vpc_dev.id
   cidr_block        = var.subnet01
@@ -20,7 +24,9 @@ resource "aws_subnet" "subnet01" {
   }
 }
 
-# AWS SUBNET #2
+####################################################
+# VPC Subnet 02                                    #
+####################################################
 resource "aws_subnet" "subnet02" {
   vpc_id            = aws_vpc.vpc_dev.id
   cidr_block        = var.subnet02
@@ -31,7 +37,9 @@ resource "aws_subnet" "subnet02" {
   }
 }
 
-# AWS SUBNET #3
+####################################################
+# VPC Subnet 03                                    #
+####################################################
 resource "aws_subnet" "subnet03" {
   vpc_id            = aws_vpc.vpc_dev.id
   cidr_block        = var.subnet03
@@ -42,7 +50,9 @@ resource "aws_subnet" "subnet03" {
   }
 }
 
-# AWS SUBNET #4
+####################################################
+# VPC Subnet 04                                    #
+####################################################
 resource "aws_subnet" "subnet04" {
   vpc_id            = aws_vpc.vpc_dev.id
   cidr_block        = var.subnet04
@@ -53,7 +63,9 @@ resource "aws_subnet" "subnet04" {
   }
 }
 
-# AWS ROUTING TABLE #1
+####################################################
+# VPC Routing table #1                             #
+####################################################
 resource "aws_route_table" "rt01" {
   vpc_id = aws_vpc.vpc_dev.id
 
@@ -62,7 +74,9 @@ resource "aws_route_table" "rt01" {
   }
 }
 
-# AWS ROUTING TABLE #2
+####################################################
+# VPC Routing table #2                             #
+####################################################
 resource "aws_route_table" "rt02" {
   vpc_id = aws_vpc.vpc_dev.id
 
@@ -71,7 +85,9 @@ resource "aws_route_table" "rt02" {
   }
 }
 
-# AWS ROUTING TABLE #3
+####################################################
+# VPC routing table #3                             #
+####################################################
 resource "aws_route_table" "rt03" {
   vpc_id = aws_vpc.vpc_dev.id
 
@@ -80,52 +96,68 @@ resource "aws_route_table" "rt03" {
   }
 }
 
-# AWS ROUTE ASSOCIATION #1
+####################################################
+# VPC route association #1                         #
+####################################################
 resource "aws_route_table_association" "rta1" {
   subnet_id      = aws_subnet.subnet01.id
   route_table_id = aws_route_table.rt01.id
 }
 
-# AWS ROUTE ASSOCIATION #2
+####################################################
+# VPC route association #2                         #
+####################################################
 resource "aws_route_table_association" "rta2" {
   subnet_id      = aws_subnet.subnet02.id
   route_table_id = aws_route_table.rt02.id
 }
 
-# AWS ROUTE ASSOCIATION #3
+####################################################
+# VPC route association #3                         #
+####################################################
 resource "aws_route_table_association" "rta3" {
   subnet_id      = aws_subnet.subnet03.id
   route_table_id = aws_route_table.rt01.id
 }
 
-# AWS ROUTE ASSOCIATION #4
+####################################################
+# VPC route association #4                         #
+####################################################
 resource "aws_route_table_association" "rta4" {
   subnet_id      = aws_subnet.subnet04.id
   route_table_id = aws_route_table.rt03.id
 }
 
-# AWS ROUTE SETTING AN INTERNET GATEWAY AS DEFAULT ROUTE
+####################################################
+# Adding a route in the routing table for the IG   #
+####################################################
 resource "aws_route" "internet_access" {
   route_table_id         = aws_route_table.rt01.id
   destination_cidr_block = "0.0.0.0/0"
   gateway_id             = aws_internet_gateway.ig.id
 }
 
-# AWS ROUTE SETTING A NAT GATEWAY AS DEFAULT ROUTE
+#############################################################
+# Adding a route in the routing table for a NAT gateway     #
+#############################################################
 resource "aws_route" "nat_gateway01" {
   route_table_id         = aws_route_table.rt02.id
   destination_cidr_block = "0.0.0.0/0"
   gateway_id             = aws_nat_gateway.gw01.id
 }
 
-# AWS ROUTE SETTING A NAT GATEWAY AS DEFAULT ROUTE
+#############################################################
+# Adding a route in the routing table for a NAT gateway     #
+#############################################################
 resource "aws_route" "nat_gateway02" {
   route_table_id         = aws_route_table.rt03.id
   destination_cidr_block = "0.0.0.0/0"
   gateway_id             = aws_nat_gateway.gw02.id
 }
 
-# AWS INTERNET GATEWAY
+####################################################
+# VPC Internet Gateway                             #
+####################################################
 resource "aws_internet_gateway" "ig" {
   vpc_id = aws_vpc.vpc_dev.id
 
@@ -134,7 +166,9 @@ resource "aws_internet_gateway" "ig" {
   }
 }
 
-# AWS NAT GATEWAY
+####################################################
+# VPC NAT Gateway                                  #
+####################################################
 resource "aws_nat_gateway" "gw01" {
   allocation_id = aws_eip.ip_nat01.id
   subnet_id     = aws_subnet.subnet01.id
@@ -146,7 +180,9 @@ resource "aws_nat_gateway" "gw01" {
   depends_on = [aws_internet_gateway.ig]
 }
 
-# AWS NAT GATEWAY
+####################################################
+# VPC NAT Gateway                                  #
+####################################################
 resource "aws_nat_gateway" "gw02" {
   allocation_id = aws_eip.ip_nat02.id
   subnet_id     = aws_subnet.subnet03.id
@@ -158,7 +194,9 @@ resource "aws_nat_gateway" "gw02" {
   depends_on = [aws_internet_gateway.ig]
 }
 
-# AWS ELASTIC IP ADDRESS
+####################################################
+# EIP for a NAT Gateway                            #
+####################################################
 resource "aws_eip" "ip_nat01" {
   vpc = true
 
@@ -167,7 +205,9 @@ resource "aws_eip" "ip_nat01" {
   }
 }
 
-# AWS ELASTIC IP ADDRESS
+####################################################
+# EIP for a NAT Gateway                            #
+####################################################
 resource "aws_eip" "ip_nat02" {
   vpc = true
 

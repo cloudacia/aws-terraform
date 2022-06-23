@@ -1,4 +1,6 @@
-# AWS LAUNCH CONFIGURATION
+####################################################
+# AWS Launch Configuration                         #
+####################################################
 resource "aws_launch_configuration" "as_conf01" {
   name_prefix          = "web_config"
   image_id             = var.aws_amis
