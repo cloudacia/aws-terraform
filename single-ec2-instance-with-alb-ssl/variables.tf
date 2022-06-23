@@ -65,3 +65,9 @@ variable "domain_name" {
   type    = string
   default = "cloudacia.net."
 }
+
+# DOMAIN NAME
+variable "www_dns_record" {
+  type    = string
+  default = "www.cloudacia.net"
+}

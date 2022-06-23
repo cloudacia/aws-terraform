@@ -1,6 +1,6 @@
-################################
-###  Security Group for ec2
-################################
+################################################
+#  EC2 INSTANCE SECURITY GROUP                 #
+################################################
 resource "aws_security_group" "web_and_ssh" {
   name        = "web_and_ssh"
   description = "Allow web incgress trafic"
@@ -9,15 +9,14 @@ resource "aws_security_group" "web_and_ssh" {
 
   # http port
   ingress {
-    description = "Allow inbound HTTP traffic"
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    #cidr_blocks = ["0.0.0.0/0"]
+    description     = "Allow inbound HTTP traffic"
+    from_port       = 80
+    to_port         = 80
+    protocol        = "tcp"
     security_groups = [aws_security_group.alb.id]
   }
 
-  # https port
+  # SSH port
   ingress {
     description = "Allow inbound SSH traffic"
     from_port   = 22
@@ -40,11 +39,9 @@ resource "aws_security_group" "web_and_ssh" {
   }
 }
 
-################################
-###  Security Group for ALB    #
-################################
-
-# AWS SECURITY GROUP FOR THE LOAD BALANCER
+#####################################
+###  ALB SECURITY SECURITY GROUP    #
+#####################################
 resource "aws_security_group" "alb" {
   name        = "alb"
   description = "Allow incoming traffic to port 80 and 443 TCP"

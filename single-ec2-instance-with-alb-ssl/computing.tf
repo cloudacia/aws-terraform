@@ -1,4 +1,6 @@
-# AWS EC2 INSTANCE
+#################################################
+# EC2 INSTANCE                                  #
+#################################################
 resource "aws_instance" "web01" {
   connection {
     type = "ssh"

@@ -3,7 +3,7 @@
 ##########################################
 
 resource "aws_acm_certificate" "web_server" {
-  domain_name       = "www.cloudacia.net"
+  domain_name       = var.www_dns_record
   validation_method = "DNS"
 
   tags = {

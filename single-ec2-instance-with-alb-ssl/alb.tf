@@ -1,4 +1,6 @@
-# AWS APPLICATION LOAD BALANCER
+#################################################
+# APPLICATION LOAD BALANCER                     #
+#################################################
 resource "aws_lb" "alb01" {
   name                       = "alb01"
   internal                   = false
@@ -8,7 +10,9 @@ resource "aws_lb" "alb01" {
   enable_deletion_protection = false
 }
 
-# AWS ALB LISTENER
+#################################################
+# APPLICATION LOAD BALANCER LISTENER TCP/HTTPS  #
+#################################################
 resource "aws_alb_listener" "alb_listener_front_end" {
   load_balancer_arn = aws_lb.alb01.arn
   port              = "443"
@@ -21,6 +25,9 @@ resource "aws_alb_listener" "alb_listener_front_end" {
   }
 }
 
+#################################################
+# APPLICATION LOAD BALANCER LISTENER TCP/HTTP   #
+#################################################
 resource "aws_lb_listener" "front_end" {
   load_balancer_arn = aws_lb.alb01.arn
   port              = "80"
