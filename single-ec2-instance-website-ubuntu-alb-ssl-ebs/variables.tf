@@ -29,14 +29,14 @@ variable "subnet02" {
 # AWS AVAILABILITY ZONE
 variable "availability_zone01" {
   type        = string
-  default     = "use1-az1"
+  default     = "us-east-1a"
   description = "US East (N. Virginia)"
 }
 
 # AWS AVAILABILITY ZONE
 variable "availability_zone02" {
   type        = string
-  default     = "use1-az2"
+  default     = "us-east-1b"
   description = "US East (N. Virginia)"
 }
 
@@ -70,4 +70,12 @@ variable "domain_name" {
 variable "www_dns_record" {
   type    = string
   default = "www.cloudacia.net"
+}
+
+###############################################
+#    EBS DEVICE NAME                          #
+###############################################
+variable "ebs_device_name" {
+  type    = string
+  default = "/dev/sdh"
 }

@@ -14,9 +14,9 @@ resource "aws_vpc" "cloudacia_vpc" {
 #  SUBNET 01                                  #
 ###############################################
 resource "aws_subnet" "subnet01" {
-  vpc_id               = aws_vpc.cloudacia_vpc.id
-  cidr_block           = var.subnet01
-  availability_zone_id = var.availability_zone01
+  vpc_id            = aws_vpc.cloudacia_vpc.id
+  cidr_block        = var.subnet01
+  availability_zone = var.availability_zone01
 
   tags = {
     Name = "cloudacia"
@@ -27,9 +27,9 @@ resource "aws_subnet" "subnet01" {
 #  SUBNET 02                                  #
 ###############################################
 resource "aws_subnet" "subnet02" {
-  vpc_id               = aws_vpc.cloudacia_vpc.id
-  cidr_block           = var.subnet02
-  availability_zone_id = var.availability_zone02
+  vpc_id            = aws_vpc.cloudacia_vpc.id
+  cidr_block        = var.subnet02
+  availability_zone = var.availability_zone02
 
   tags = {
     Name = "cloudacia"
