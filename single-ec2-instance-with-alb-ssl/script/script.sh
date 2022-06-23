@@ -1,6 +1,3 @@
-################################################
-#  BASH SCRIPT TO BOOTSTRAP AN EC2 INSTANCE    #
-################################################
 #!/bin/bash
 
 # UPDATE UBUNTU OS
