@@ -1,7 +1,6 @@
 ##########################################
 # SSL certificate for the VPN endpoint   #
 ##########################################
-
 resource "aws_acm_certificate" "web_server" {
   domain_name       = var.www_dns_record
   validation_method = "DNS"
@@ -18,7 +17,6 @@ resource "aws_acm_certificate" "web_server" {
 #################################################
 # Kick off SSL server certificate validation    #
 #################################################
-
 resource "aws_acm_certificate_validation" "web_server_validation" {
   timeouts {
     create = "5m"
