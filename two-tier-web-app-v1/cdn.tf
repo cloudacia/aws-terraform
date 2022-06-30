@@ -9,6 +9,12 @@ resource "aws_cloudfront_distribution" "alb_distribution" {
   enabled = true
   aliases = [var.www_dns_record03]
 
+  logging_config {
+    include_cookies = false
+    bucket          = aws_s3_bucket.cloudfront_bucket.bucket_domain_name
+    prefix          = var.logs_prefix
+  }
+
   origin {
     domain_name = aws_lb.alb01.dns_name
     origin_id   = aws_lb.alb01.id
@@ -20,6 +26,11 @@ resource "aws_cloudfront_distribution" "alb_distribution" {
       origin_ssl_protocols     = ["TLSv1", "TLSv1.1", "TLSv1.2"]
       origin_keepalive_timeout = "5"
       origin_read_timeout      = "30"
+    }
+
+    custom_header {
+      name  = var.custom_header["key"]
+      value = var.custom_header["value"]
     }
   }
 

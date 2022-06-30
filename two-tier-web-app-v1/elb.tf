@@ -8,6 +8,12 @@ resource "aws_lb" "alb01" {
   security_groups            = [aws_security_group.elb.id]
   subnets                    = [aws_subnet.subnet01.id, aws_subnet.subnet02.id]
   enable_deletion_protection = false
+
+  #access_logs {
+  #  bucket  = aws_s3_bucket.elb_bucket.id
+  #  enabled = true
+
+  #}
 }
 
 #################################################
@@ -20,26 +26,32 @@ resource "aws_alb_listener" "alb_listener_https" {
   certificate_arn   = aws_acm_certificate.certificate_asterisk.id
 
   default_action {
-    type             = "forward"
-    target_group_arn = aws_alb_target_group.alb_tg_webserver.arn
+    type = "fixed-response"
+
+    fixed_response {
+      content_type = "text/plain"
+      message_body = "Access Denied"
+      status_code  = "403"
+    }
   }
 }
 
 #################################################
-# APPLICATION LOAD BALANCER LISTENER TCP/HTTP   #
+# APPLICATION LOAD BALANCER LISTENER RULE       #
 #################################################
-resource "aws_lb_listener" "alb_listener_http" {
-  load_balancer_arn = aws_lb.alb01.arn
-  port              = "80"
-  protocol          = "HTTP"
+resource "aws_lb_listener_rule" "alb_listener_https" {
+  listener_arn = aws_alb_listener.alb_listener_https.arn
+  priority     = 100
 
-  default_action {
-    type = "redirect"
+  action {
+    type             = "forward"
+    target_group_arn = aws_alb_target_group.alb_tg_webserver.arn
+  }
 
-    redirect {
-      port        = "443"
-      protocol    = "HTTPS"
-      status_code = "HTTP_301"
+  condition {
+    http_header {
+      http_header_name = var.custom_header["key"]
+      values           = [var.custom_header["value"]]
     }
   }
 }

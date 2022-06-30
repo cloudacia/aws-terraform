@@ -267,3 +267,22 @@ variable "redis_param_group_name" {
   type    = string
   default = "default.redis6.x"
 }
+
+###############################################
+# Cloudfront custom header for security       #
+###############################################
+variable "custom_header" {
+  type = map(any)
+  default = {
+    key : "secret"
+    value : "cloudacia2022"
+  }
+}
+
+###############################################
+# logs prefix                                 #
+###############################################
+variable "logs_prefix" {
+  type    = string
+  default = "cloudacia_"
+}

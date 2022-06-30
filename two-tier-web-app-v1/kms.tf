@@ -33,3 +33,15 @@ resource "aws_kms_key" "redis_key" {
     Name = "cloudacia"
   }
 }
+
+resource "aws_kms_key" "s3_key" {
+  description             = "REDIS encryption/decryption key"
+  key_usage               = "ENCRYPT_DECRYPT"
+  deletion_window_in_days = 10
+  is_enabled              = true
+  enable_key_rotation     = true
+
+  tags = {
+    Name = "cloudacia"
+  }
+}
