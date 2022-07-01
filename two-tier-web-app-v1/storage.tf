@@ -12,7 +12,8 @@ resource "aws_s3_bucket" "bucket01" {
 #  AWS S3 BUCKET CLOUDFRONT LOGGING           #
 ###############################################
 resource "aws_s3_bucket" "cloudfront_bucket" {
-  bucket = "cloudacia-cloudfront-logs"
+  bucket        = "cloudacia-cloudfront-logs"
+  force_destroy = true
   tags = {
     Name = "Wordpress"
   }
