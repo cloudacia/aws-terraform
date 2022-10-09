@@ -1,6 +1,4 @@
-# AWS Load Balanced Website With DNS
-
-This project aims to deploy a sample website in a load-balanced, highly available, and resilient manner utilizing automation and AWS best practices.
+# AWS Load Balanced Website With DNS and Ubuntu Linux
 
 **Built with**
 
@@ -34,10 +32,6 @@ Terraform manages the deployment.
 * 1 x Bastion host
 
 **Getting started**
-
-Clone the repository locally in your system:
-
-`git clone https://github.com/cloudacia/aws-terraform.git`
 
 Deploy the code in your AWS account with Terraform
 
