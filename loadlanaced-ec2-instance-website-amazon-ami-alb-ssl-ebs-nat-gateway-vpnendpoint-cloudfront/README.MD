@@ -1,4 +1,4 @@
-# A VPC + two EC2 instances + ACM + Cloudfront + Route53 + VPN
+# A VPC + two EC2 instances + ACM + Cloudfront + Route53 + VPN + Amazon Linux
 
 **Built with**
 
