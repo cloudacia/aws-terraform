@@ -14,6 +14,7 @@ resource "aws_elasticache_subnet_group" "redis_subnet_group" {
 
 resource "aws_elasticache_replication_group" "redis_wp" {
   automatic_failover_enabled = true
+  engine_version             = var.redis_engine_version
   replication_group_id       = "tf-rep-group-1"
   description                = "Redis Replication"
   node_type                  = var.redis_node_type
