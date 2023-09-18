@@ -1,32 +1,20 @@
+##########################################################
+# An S3 bucket to store Apache's configuration file      #
+##########################################################
 resource "aws_s3_bucket" "source_vpc_bucket_01" {
   bucket = var.vpc_source_bucket_name
   acl    = var.vpc_source_bucket_acl
 
   tags = {
-    Name = "rds-demo-cencosud"
+    Name = "rds-demo-for-customer-a"
   }
 
   provider = aws.virginia
 }
 
-resource "aws_s3_bucket_server_side_encryption_configuration" "source_vpc_bucket_01_encryption" {
-  bucket = aws_s3_bucket.source_vpc_bucket_01.bucket
-
-   rule {
-     apply_server_side_encryption_by_default {
-       kms_master_key_id = aws_kms_key.kms-virginia-key.arn
-       sse_algorithm     = "aws:kms"
-     }
-   }
- }
-
- resource "aws_s3_bucket_versioning" "source_vpc_bucket_01_versioning" {
-  bucket = aws_s3_bucket.source_vpc_bucket_01.id
-  versioning_configuration {
-    status = "Enabled"
-  }
-}
-
+##########################################################
+# Restrict public access to a S3 bucket                  #
+##########################################################
 resource "aws_s3_bucket_public_access_block" "source_vpc_bucket_01_public_blocked" {
   bucket = aws_s3_bucket.source_vpc_bucket_01.id
 
@@ -36,12 +24,14 @@ resource "aws_s3_bucket_public_access_block" "source_vpc_bucket_01_public_blocke
   restrict_public_buckets = true
 }
 
+##########################################################
+# Upload a local file into a S3 bucket                   #
+##########################################################
 resource "aws_s3_bucket_object" "rc_local_file" {
   bucket = aws_s3_bucket.source_vpc_bucket_01.id
   key    = var.vpc_source_object_key_1
   acl    = var.vpc_source_object_acl_1
   source = var.vpc_source_object_source_1
-  kms_key_id = aws_kms_key.kms-virginia-key.arn
-
+  
   provider = aws.virginia
 }

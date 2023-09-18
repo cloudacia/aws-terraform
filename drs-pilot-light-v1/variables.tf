@@ -80,7 +80,7 @@ variable "source_ec2_drs_role" {
 
 variable "source_ec2_role_policy_1" {
     type = string
-    default = "arn:aws:iam::aws:policy/AdministratorAccess"
+    default = "arn:aws:iam::aws:policy/"
 }
 
 variable "source_ec2_instance_profile_name" {
@@ -108,10 +108,9 @@ variable "instance_type" {
   default = "t2.small"
 }
 
-
 variable "vpc_source_bucket_name" {
     type = string
-    default = "drs-demo-ceoncosud"
+    default = "rds-demo-for-customer-a"
 }
 
 variable "vpc_source_bucket_acl" {
@@ -199,8 +198,42 @@ variable "ssm_enpoint_2_oregon" {
   default     = "com.amazonaws.us-west-2.ssmmessages"  
 }
 
-
 variable "ssm_enpoint_3_oregon" {
   type        = string
   default     = "com.amazonaws.us-west-2.ec2messages"  
+}
+
+variable s3_int_vpc_endpoint_virginia {
+    type = string
+    default = "com.amazonaws.us-east-1.s3"
+}
+
+variable s3_gtw_vpc_endpoint_virginia {
+    type = string
+    default = "com.amazonaws.us-east-1.s3"
+}
+
+variable ec2_int_vpc_endpoint_virginia {
+    type = string
+    default = "com.amazonaws.us-east-1.ec2"
+}
+
+variable drs_int_vpc_endpoint_virginia {
+    type = string
+    default = "com.amazonaws.us-east-1.drs"
+}
+
+variable drs_role_for_ec2_instances {
+    type = string
+    default = "AWSElasticDisasterRecoveryRecoveryInstanceRole"
+}
+
+variable ssm_access_policy {
+    type = string
+    default = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+}
+
+variable s3_full_access_policy {
+    type = string
+    default = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
 }

@@ -38,7 +38,7 @@ echo "<h1>Hello World from "$EC2_HOSTNAME" in the AWS Region "$EC2_REGION"</h1>"
 sudo systemctl restart nginx
 
 # Downloading rc.local file to /etc/rc.d/
-sudo aws s3 cp s3://drs-demo-ceoncosud/rc.local /etc/rc.d/rc.local
+sudo aws s3 cp s3://rds-demo-for-customer-a/rc.local /etc/rc.d/rc.local
 
 # Applying execution permission to /etc/rc.d/rc.local
 sudo chmod +x /etc/rc.d/rc.local
