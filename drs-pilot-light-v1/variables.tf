@@ -93,11 +93,6 @@ variable "ec2_instance_ssh_key_name" {
     default = "ec2-instance-ssh-key"
 }
 
-variable "ec2_instance_ssh_key_value" {
-    type = string
-    default = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC1MvqEnvkdxZmJmePX/JaJZaHdL6huZYFOWAkUix6dIltpuiakgJ6W7voRX/WEhWQCkAAXma/7VmfeoDh2tPCko5ZFM8GDnPi+eL5b3lF7hSDVL0EvVSQrzDqebJm9m9EeBg4HVl+IQbXPv8WbRPcT8oRWqF0fklRlP89/1u1DwYSRv1rpx0FpXz5YsyvulcbNtDe2ufnLPcXehk8fP8KaTNzYoh5DuJu2IKRrGu6yycq2iKbvJjbbQWmlbTRdPlIzYfFIWzIE2/DjNOPrxaUEKHiji3qZs/1jgCqEfDikeZNx6orYangnFuemyohCptOJddH0viWkATp6E/5GkeaD"
-}
-
 variable "aws_amis" {
   type    = string
   default = "ami-0cff7528ff583bf9a"
