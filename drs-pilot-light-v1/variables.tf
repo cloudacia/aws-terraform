@@ -105,7 +105,7 @@ variable "instance_type" {
 
 variable "vpc_source_bucket_name" {
     type = string
-    default = "rds-demo-for-customer-a"
+    default = "rds-demo-for-cloudacia-a"
 }
 
 variable "vpc_source_bucket_acl" {
