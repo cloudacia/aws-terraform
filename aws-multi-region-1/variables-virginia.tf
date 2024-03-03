@@ -222,5 +222,5 @@ variable "vpc_source_object_acl_1" {
 ###############################################
 variable "vpc_source_object_source_1" {
   type    = string
-  default = "files/rc.local"
+  default = "files-virginia/rc.local"
 }

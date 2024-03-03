@@ -130,7 +130,7 @@ variable "vpc_source_object_acl_1_oregon" {
 ###############################################
 variable "vpc_source_object_source_1_oregon" {
   type    = string
-  default = "files/rc.local"
+  default = "files-oregon/rc.local"
 }
 
 ###############################################
@@ -138,5 +138,5 @@ variable "vpc_source_object_source_1_oregon" {
 ###############################################
 variable "aws_amis_oregon" {
   type    = string
-  default = "ami-052c9ea013e6e3567"
+  default = "ami-0895022f3dac85884"
 }

@@ -30,10 +30,10 @@ resource "aws_s3_bucket_public_access_block" "bucket_01_public_blocked_oregon" {
 # Upload a local file into a S3 bucket                   #
 ##########################################################
 resource "aws_s3_bucket_object" "rc_local_file_oregon" {
-  bucket = aws_s3_bucket.bucket_01.id
-  key    = var.vpc_source_object_key_1
-  acl    = var.vpc_source_object_acl_1
-  source = var.vpc_source_object_source_1
+  bucket = aws_s3_bucket.bucket_02_oregon.id
+  key    = var.vpc_source_object_key_1_oregon
+  acl    = var.vpc_source_object_acl_1_oregon
+  source = var.vpc_source_object_source_1_oregon
 
-  provider = aws.virginia
+  provider = aws.oregon
 }
