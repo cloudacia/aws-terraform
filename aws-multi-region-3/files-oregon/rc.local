@@ -1,0 +1,15 @@
+#!/bin/bash
+
+touch /var/lock/subsys/local
+
+# Get EC2 instance hostname
+EC2_HOSTNAME=$(curl -s http://169.254.169.254/latest/meta-data/hostname)
+
+# Get EC2 instance AWS region
+EC2_REGION=$(curl -s http://169.254.169.254/latest/dynamic/instance-identity/document | jq -r .region)
+
+# REDIRECT STRING TO A INDEX.HTML FILE
+echo "<h1>Hello World from "$EC2_HOSTNAME" in the AWS Region "$EC2_REGION"</h1>" > /usr/share/doc/HTML/index.html
+
+# Restart nginx service
+sudo systemctl restart nginx
